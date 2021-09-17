@@ -6,7 +6,7 @@
 #####################################################
 
 
-sudo yum install wget -y
+sudo yum install wget telnet git -y
 
 #username should be provided as command line parameter
 username=$1
