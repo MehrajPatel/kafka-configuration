@@ -6,7 +6,7 @@
 #####################################################
 
 
-sudo yum install wget telnet -y
+sudo yum install wget telnet curl which -y
 
 #username should be provided as command line parameter
 username=$1
