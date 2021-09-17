@@ -47,5 +47,5 @@ done
 
 for i in `tac $HOME/hosts`
 do 
- ssh $username@$i 'sudo bash pre-req.sh $username'  
+ ssh $username@$i 'sudo bash pre-req.sh'  
 done
