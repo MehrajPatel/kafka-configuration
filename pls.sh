@@ -10,8 +10,6 @@ sudo yum install wget telnet curl which -y
 
 #username should be provided as command line parameter
 username=$1
-#totalnodes=$2
-#for i in {1..$(seq 1 $totalnodes)};
 cat $HOME/.ssh/authorized_keys >> authorized_keys
 for i in `cat $HOME/hosts`
 do
@@ -27,20 +25,9 @@ do
  ssh $username@$i 'chmod a+x pre-req.sh'
 done
 
-#sudo rm ~/authorized_keys
-#sudo rm $HOME/key.pem
-#sudo rm $HOME/pre-req.sh
-
-sudo wget  -O $HOME/jdk-8u131-linux-x64.rpm --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.rpm"
-
-for i in `tail -n +2 $HOME/hosts`
-do
- scp $HOME/jdk-8u131-linux-x64.rpm $username@$i:~/ 
-done
-
 for i in `cat $HOME/hosts`
 do
- ssh $username@$i "sudo rpm -ivh ~/jdk-8u131-linux-x64.rpm"
+ ssh $username@$i "sudo yum install java-1.8.0-openjdk.x86_64 -y"
  ssh $username@$i "echo 'JAVA_HOME=/usr/java/latest' | sudo tee -a /etc/profile.d/java.sh"
  ssh $username@$i "source /etc/profile.d/java.sh"
 done
